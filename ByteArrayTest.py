@@ -122,3 +122,36 @@ for n in n_test:
 check = lambda x:print(f"{sum(x)}/{len(x)}")
 check(res1)
 check(res2)
+
+state0 = random.getstate()[1][:-1]
+state1 = RD1.getstate()[1][:-1]
+state2 = RD2.getstate()[1][:-1]
+
+assert state1 == state2
+t = [i for i,j in enumerate(state1) if j in state0]
+# >>> len(t)
+# Out[16]: 102
+# >>> state1[1][522] == state0[1][0]
+# Out[17]: True
+# >>> state1[1][523] == state0[1][1]
+# Out[18]: True
+# >>> state1[623] == state0[101]
+# Out[43]: True
+
+for _ in range(624):
+    assert random.getrandbits(32) == RD1.getrandbits(32)
+# Twist
+
+state0_ = random.getstate()[1][:-1]
+assert state0_ == state0
+
+# origin random not Twist
+
+state1_ = RD1.getstate()[1][:-1]
+t1 = [i for i,j in enumerate(state1_) if j in state0_]
+# >>> len(t1)
+# Out[40]: 522
+# >>> t1[0]
+# Out[41]: 0
+# >>> t1[-1]
+# Out[42]: 521
