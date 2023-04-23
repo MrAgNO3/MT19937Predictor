@@ -1,6 +1,6 @@
 from requests import get
 from base64 import *
-import Crypto.Cipher.AES as AES
+from Crypto.Cipher import AES
 
 key = b'YELLOW SUBMARINE'
 data = get('https://cryptopals.com/static/challenge-data/7.txt').content
