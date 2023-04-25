@@ -24,7 +24,7 @@
 
 可以直接在算法层面进行逆向推导
 
-![image-20230421001439814](readme.assets/image-20230421001439814.png)
+![image-20230421001439814](readme.assets/屏幕截图 2023-04-25 091643.png)
 
 对 tamper 进行逆向，实现随机数输出与内部state的转换。
 
@@ -61,7 +61,7 @@ def untempering(y):
 
 当需要生成的随机数小于32bit时，PRNG会对一个单元的输出进行截断，保留MSB作为输出。如下图所示，生成的32bit的随机数与16bit的随机数的高位相同。
 
-![image-20230425111955811](C:\Users\111111\Desktop\bs\readme.assets\image-20230425111955811.png)
+![image-20230425111955811](readme.assets\image-20230425111955811.png)
 
 如果获取的是连续的经过msb截断的数据，也能实现预测。
 
@@ -76,9 +76,9 @@ $
 这里的state’代表经过一次旋转的state
 
 tamper过程的对象是32bit的state单元，称为block，则可以有如下关系
-$$
-T_2*block=R
-$$
+
+$T_2*block=R$
+
 这里的R代表输出是随机数，为32bit
 
 同时，对于整个state，也有如下关系
