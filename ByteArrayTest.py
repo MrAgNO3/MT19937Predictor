@@ -10,8 +10,10 @@ from source.XorSolver import XorSolver
 import numpy as np
 from Gauss import Gauss
 from AgNO3 import *
+import os
 
-
+random.seed(os.urandom(64))
+stt0 = random.getstate()[1][:-1]
 nbits = 32
 V = 1
 
@@ -105,6 +107,7 @@ rng_clone1 = MT19937(state_from_solved_eqns = solver.eqns)
 rng_clone1()
 RD1 = random.Random()
 RD1.setstate((3,tuple(rng_clone1.state+[0]),None))
+stt1 = RD1.getstate()[1][:-1]
 res1 = []
 for n in n_test:
     # assert n == rng_clone(), "Clone failed!"
@@ -114,12 +117,13 @@ rng_clone2 = MT19937(state_from_solved_eqns = r)
 rng_clone2()
 RD2 = random.Random()
 RD2.setstate((3,tuple(rng_clone2.state+[0]),None))
+stt2 = RD2.getstate()[1][:-1]
 res2 = []
 for n in n_test:
     # assert n == rng_clone(), "Clone failed!"
     res2.append(int(n == RD2.getrandbits(nbits)))
 
-check = lambda x:print(f"{sum(x)}/{len(x)}")
+check = lambda x:print(f"{sum(x)}/{len(x)} RIGHT")
 check(res1)
 check(res2)
 
@@ -129,29 +133,29 @@ state2 = RD2.getstate()[1][:-1]
 
 assert state1 == state2
 t = [i for i,j in enumerate(state1) if j in state0]
+breakpoint()
 # >>> len(t)
-# Out[16]: 102
-# >>> state1[1][522] == state0[1][0]
-# Out[17]: True
-# >>> state1[1][523] == state0[1][1]
-# Out[18]: True
-# >>> state1[623] == state0[101]
-# Out[43]: True
+# Out[16]: 102(522-623) / 203(421-623) / 100(524,623)
 
 for _ in range(624):
     assert random.getrandbits(32) == RD1.getrandbits(32)
 # Twist
 
 state0_ = random.getstate()[1][:-1]
-assert state0_ == state0
-
-# origin random not Twist
-
 state1_ = RD1.getstate()[1][:-1]
+
 t1 = [i for i,j in enumerate(state1_) if j in state0_]
+assert state1[524:] == state0[:100]
+assert state1_[:523] == state0[100:]
+assert state1_[524:] == state0_[:100]
 # >>> len(t1)
 # Out[40]: 522
 # >>> t1[0]
 # Out[41]: 0
 # >>> t1[-1]
 # Out[42]: 521
+
+
+for _ in range(10000):
+    assert random.getrandbits(32) == RD1.getrandbits(32)
+
