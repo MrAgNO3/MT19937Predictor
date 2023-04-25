@@ -61,7 +61,7 @@ def untempering(y):
 
 当需要生成的随机数小于32bit时，PRNG会对一个单元的输出进行截断，保留MSB作为输出。如下图所示，生成的32bit的随机数与16bit的随机数的高位相同。
 
-![image-20230425111955811](C:\Users\111111\Desktop\bs\assets\image-20230425111955811.png)
+![image-20230425111955811](C:\Users\111111\Desktop\bs\readme.assets\image-20230425111955811.png)
 
 如果获取的是连续的经过msb截断的数据，也能实现预测。
 
