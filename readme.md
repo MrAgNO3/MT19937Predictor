@@ -12,7 +12,7 @@
 
 算法内部状态大小为19968bit，以32bit为一个单元进行输出。每输出624个单元后，会进行一次twist。如下图所示：
 
-![flow](https://github.com/MrAgNO3/MT19937Predictor/blob/master/readme.assets/flow.png)
+![flow](readme.assets/flow.png)
 
 ## 功能
 
@@ -24,7 +24,7 @@
 
 可以直接在算法层面进行逆向推导
 
-![image-20230421001439814](https://github.com/MrAgNO3/MT19937Predictor/blob/master/readme.assets/image-20230421001439814.png)
+![image-20230421001439814](readme.assets/image-20230421001439814.png)
 
 对 cast 进行逆向，实现随机数输出与内部state的转换。
 
