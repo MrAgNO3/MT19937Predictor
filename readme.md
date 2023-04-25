@@ -82,15 +82,13 @@ $T_2*block=R$
 这里的R代表输出是随机数，为32bit
 
 同时，对于整个state，也有如下关系
-$$
-\left[\begin{matrix}
+$\left[\begin{matrix}
 T_2 & 0 & 0 & \cdots & 0\\
 0 & T_2 & 0 & \cdots & 0\\
 0 & 0 & T_2 & \cdots & 0\\
 \vdots & \vdots & \vdots & \ddots & \vdots\\
 0 & 0 & 0 & \cdots & T_2
-\end{matrix}\right]*state=R
-$$
+\end{matrix}\right]*state=R$
 
 $$
 \left[\begin{matrix}
